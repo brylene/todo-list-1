@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   # ------------------------------
 
   # SIGN IN FORM
+  get("/", { :controller => "user_authentication", :action => "sign_in_form" })
   get("/user_sign_in", { :controller => "user_authentication", :action => "sign_in_form" })
   # AUTHENTICATE AND STORE COOKIE
   post("/user_verify_credentials", { :controller => "user_authentication", :action => "create_cookie" })

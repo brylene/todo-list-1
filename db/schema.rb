@@ -12,14 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2023_04_18_191038) do
 
-  create_table "next_ups", force: :cascade do |t|
-    t.string "content"
-    t.string "status"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "todos", force: :cascade do |t|
     t.string "content"
     t.string "status"

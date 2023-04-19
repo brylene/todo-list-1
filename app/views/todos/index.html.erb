@@ -50,7 +50,7 @@
         <li>
           <div><%= a_todo.content %></div>
           <small>
-            Started <%= time_ago_in_words(a_todo.created_at) %> ago
+            Started <%= time_ago_in_words(a_todo.updated_at) %> ago
             <a href="/delete_todo/<%= a_todo.id %>">Delete</a>
           </small>
 

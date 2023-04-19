@@ -2,6 +2,8 @@ class TodosController < ApplicationController
   def index
     matching_todos = Todo.all
 
+    #matching_todo = @current_user.todos
+
     @list_of_todos = matching_todos.order({ :created_at => :desc })
 
     render({ :template => "todos/index.html.erb" })
@@ -14,11 +16,13 @@ class TodosController < ApplicationController
 
     @the_todo = matching_todos.at(0)
 
-    render({ :template => "todos/show.html.erb" })
+    #render({ :template => "todos/show.html.erb" })
+    redirect_to("/")
   end
 
   def create
     the_todo = Todo.new
+    the_todo.user_id = session.fetch(:user_id)
     the_todo.content = params.fetch("query_content")
     the_todo.status = "Next Up"
 
