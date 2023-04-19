@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo List</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  </head>
+  <body>
+    <h1>Your todo list</h1>
+
+    <div>
+      <h2>Add a new todo</h2>
+
+      <form action="/insert_todo" method="post">
+        <div>
+          <label for="content_box">Describe the task:</label>
+
+          <input type="text" id="content_box" name="query_content">
+        </div>
+
+        <button>Add to Next Up</button>
+      </form>
+    </div>
+
+    <div class="next_up">
+      <h2>Next Up</h2>
+      <% @nextup_todo = Todo.where(status: "Next Up") %>
+      <ul>
+        <% @nextup_todo.each do |a_todo| %>
+        <li>
+          <div><%= a_todo.content %></div>
+          <small>
+            Added <%= time_ago_in_words(a_todo.created_at) %> ago
+            <a href="/delete_todo/<%= a_todo.id %>">Delete</a>
+          </small>
+
+          <form action="/modify_todo/<%= a_todo.id %>" method="post">
+            <input type="hidden" name="query_status" value="in_progress">
+            <button>Move to In Progress</button>
+          </form>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="in_progress">
+      <h2>In Progress</h2>
+      <ul>
+        <% @inprogress_todo = Todo.where(status: "In Progress") %>
+        <% @inprogress_todo.each do |a_todo| %>
+        <li>
+          <div><%= a_todo.content %></div>
+          <small>
+            Started <%= time_ago_in_words(a_todo.created_at) %> ago
+            <a href="/delete_todo/<%= a_todo.id %>">Delete</a>
+          </small>
+
+          <form action="/modify_todo/<%= a_todo.id %>" method="post">
+            <input type="hidden" name="query_status" value="done">
+            <button>Move to Done</button>
+          </form>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="done">
+      <h2>Done</h2>
+      <ul>
+        <% @done = Todo.where(status: "Done") %>
+        <% @done.each do |a_todo| %>
+        <li>
+          <div><%= a_todo.content %></div>
+          <small>
+            Completed at <%= a_todo.updated_at.strftime("%-I:%M%p on %d-%b-%Y") %>
+            <a href="/delete_todo/<%= a_todo.id %>">Delete</a>
+          </small>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </body>
+</html>

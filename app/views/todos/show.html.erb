@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Todo #<%= @the_todo.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/todos">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_todo/<%= @the_todo.id %>">
+          Delete todo
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Content
+      </dt>
+      <dd>
+        <%= @the_todo.content %>
+      </dd>
+
+      <dt>
+        Status
+      </dt>
+      <dd>
+        <%= @the_todo.status %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_todo.user_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_todo.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_todo.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit todo
+    </h2>
+
+    <form action="/modify_todo/<%= @the_todo.id %>"  method="post" >
+      <div>
+        <label for="content_box">
+          Content
+        </label>
+
+        <input type="text" id="content_box" name="query_content" value="<%= @the_todo.content %>">
+      </div>
+
+      <div>
+        <label for="status_box">
+          Status
+        </label>
+
+        <input type="text" id="status_box" name="query_status" value="<%= @the_todo.status %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_todo.user_id %>">
+      </div>
+
+      <button>
+        Update todo
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

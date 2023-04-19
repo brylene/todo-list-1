@@ -1,0 +1,11 @@
+.next_up {
+  color: darkorange !important;
+}
+
+.in_progress {
+  color: darkgreen;
+}
+
+.done {
+  color: grey
+}
